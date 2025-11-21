@@ -1,4 +1,4 @@
-###TIENDA ONLINE MONGODB###
+### TIENDA ONLINE MONGODB ###
 
 Este proyecto implementa una base de datos NoSQL utilizando MongoDB para una tienda en línea de ropa, calzado, skinni jeans etc.
 Incluye:
@@ -15,7 +15,7 @@ Diseño y documentación de la base de datos# MongoDb-Compass_TiendaOnline
 Implementación de una base de datos NoSQL en MongoDB para una tienda en línea de ropa, calzado, accesorios y hogar. Incluye inserciones, consultas básicas, filtros, operaciones CRUD y consultas de agregación.
 
 
-##ESTRUCTURA DEL PROYECTO##
+## ESTRUCTURA DEL PROYECTO ##
 
 /data
     productos.json      → Lista de productos
@@ -29,7 +29,7 @@ Implementación de una base de datos NoSQL en MongoDB para una tienda en línea 
 
 README.md               → Documentación del proyecto
 
-##CARGA DE DATOS##
+## CARGA DE DATOS ##
 
 . Carga de datos
 
@@ -41,7 +41,7 @@ clientes.json → lista de clientes registrados
 
 pedidos.json → pedidos realizados por los clientes
 
-##CONSULTAS BASICAS##
+## CONSULTAS BASICAS ##
 
 2. Consultas básicas (CRUD)
 
