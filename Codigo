@@ -1,0 +1,118 @@
+// ==============================
+// OPERACIONES BÁSICAS (CRUD)
+// ==============================
+
+// 1. INSERTAR UN PRODUCTO
+db.productos.insertOne({
+  nombre: "Camiseta básica",
+  categoria: "Ropa",
+  precio: 35000,
+  stock: 50,
+  marca: "BrandBasic",
+  valoracion_promedio: 4.1
+});
+
+// 2. CONSULTAR TODOS LOS PRODUCTOS DE ROPA
+db.productos.find({ categoria: "Ropa" });
+
+// 3. ACTUALIZAR EL STOCK DE UN PRODUCTO
+db.productos.updateOne(
+  { nombre: "Producto 1" },
+  { $set: { stock: 35 } }
+);
+
+// 4. ELIMINAR UN CLIENTE POR CORREO
+db.clientes.deleteOne({ correo: "cliente@example.com" });
+
+// 5. INSERTAR UN NUEVO CLIENTE
+db.clientes.insertOne({
+  nombre: "Andrea Torres",
+  correo: "andrea.torres@gmail.com",
+  ciudad: "Bogotá",
+  fecha_registro: new Date()
+});
+
+// 6. LISTAR TODOS LOS PEDIDOS
+db.pedidos.find();
+
+
+
+// ==================================
+// CONSULTAS CON FILTROS Y OPERADORES
+// ==================================
+
+// 1. PRODUCTOS DE ROPA CON PRECIO ENTRE 30.000 Y 80.000
+db.productos.find({
+  categoria: "Ropa",
+  precio: { $gte: 30000, $lte: 80000 }
+});
+
+// 2. PRODUCTOS QUE SEAN ROPA O CALZADO
+db.productos.find({
+  categoria: { $in: ["Ropa", "Calzado"] }
+});
+
+// 3. PRODUCTOS DE ROPA CON MARCA QUE EMPIECE POR 'Brand'
+db.productos.find({
+  categoria: "Ropa",
+  marca: { $regex: /^Brand/, $options: "i" }
+});
+
+// 4. CLIENTES REGISTRADOS DESPUÉS DE 2023
+db.clientes.find({
+  fecha_registro: { $gte: new Date("2023-01-01") }
+});
+
+// 5. PEDIDOS CON VALOR TOTAL MAYOR A 150.000
+db.pedidos.find({
+  valor_total: { $gt: 150000 }
+});
+
+// 6. PRODUCTOS DE ROPA CON STOCK MENOR A 20
+db.productos.find({
+  categoria: "Ropa",
+  stock: { $lt: 20 }
+});
+
+
+// ================================
+// CONSULTAS DE AGREGACIÓN (EDA)
+// ================================
+
+// 1. PROMEDIO DE PRECIO POR CATEGORÍA RELACIONADA A ROPA
+db.productos.aggregate([
+  { $match: { categoria: { $in: ["Ropa", "Calzado", "Accesorios"] } } },
+  { $group: { _id: "$categoria", promedioPrecio: { $avg: "$precio" } } },
+  { $sort: { promedioPrecio: -1 } }
+]);
+
+// 2. TOTAL DE STOCK POR CATEGORÍA
+db.productos.aggregate([
+  { $match: { categoria: { $in: ["Ropa", "Calzado", "Accesorios"] } } },
+  { $group: { _id: "$categoria", totalStock: { $sum: "$stock" } } }
+]);
+
+// 3. VALORACIÓN PROMEDIO POR CATEGORÍA
+db.productos.aggregate([
+  { $match: { categoria: { $in: ["Ropa", "Calzado", "Accesorios"] } } },
+  { $group: { _id: "$categoria", valoracionPromedio: { $avg: "$valoracion_promedio" } } },
+  { $sort: { valoracionPromedio: -1 } }
+]);
+
+// 4. TOP 5 PRODUCTOS MÁS COSTOSOS
+db.productos.aggregate([
+  { $sort: { precio: -1 } },
+  { $limit: 5 },
+  { $project: { nombre: 1, categoria: 1, precio: 1 } }
+]);
+
+// 5. CANTIDAD DE PEDIDOS POR CLIENTE
+db.pedidos.aggregate([
+  { $group: { _id: "$cliente_id", cantidadPedidos: { $sum: 1 } } }
+]);
+
+// 6. INGRESO TOTAL GENERADO POR CLIENTE
+db.pedidos.aggregate([
+  { $group: { _id: "$cliente_id", totalGastado: { $sum: "$valor_total" } } },
+  { $sort: { totalGastado: -1 } }
+]);
