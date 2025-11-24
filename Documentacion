@@ -1,0 +1,90 @@
+### Introduccion ###
+
+El uso de bases de datos NoSQL ha incrementado significativamente en los últimos años debido a la necesidad de almacenar información flexible, no etructurada y en grandes volúmenes. MongoDB es una de las soluciones más utilizadas para este tipo de requerimientos gracias a su modelo orientado a documentos, su escalabilidad y su facilidad para manejar datos heterogéneos.
+
+
+## Descripcion del caso de uso ##
+
+Descripcion del caso de uso:
+
+En este informe se presenta el diseño, implementación y análisis de una base de datos MongoDB aplicada a una tienda virtual de ropa, que incluye productos, clientes y pedidos. El objetivo fundamental es comprender el funcionamiento de MongoDB mediante la ejecución de consultas básicas, consultas con filtros avanzados y operaci
+
+
+## Diseño de la base de datos ##
+
+La base de datos se denominó “tiendaOnline” y está compuesta por tres colecciones principales:
+1. productos
+Contiene información sobre cada producto, incluyendo:
+nombre
+categoría
+precio
+stock
+marca
+valoración_promedio
+
+2. clientes
+Almacena datos de clientes como:
+nombre
+correo electrónico
+ciudad
+fecha_registro
+
+3. pedidos
+Registra las compras realizadas:
+cliente_id
+productos adquiridos
+fecha del pedido
+valor total
+
+Esta estructura permite una gestión flexible y eficiente, adaptada a las necesidades de una tienda virtual real.
+
+
+## Consultas basicas ##
+
+Estas operaciones permiten insertar, buscar, actualizar y eliminar información. Se utilizaron funciones como insertOne(), find(), updateOne() y deleteOne().
+ Por ejemplo, una consulta para actualizar el stock de un producto utiliza el operador $set, lo que permite modificar únicamente el campo necesitado sin afectar el resto del documento.
+Las consultas básicas permitieron verificar la integridad de los datos y realizar modificaciones esenciales en el inventario o en los registros de clientes.
+
+
+## Filtros y operadores ##
+
+Se aplicaron operadores como $gte, $lte, $in, $regex y combinaciones con $and y $or. Estas consultas permiten obtener resultados más precisos.
+Por ejemplo, se filtraron productos de ropa cuyo precio se encontraba en un rango específico, se buscaron marcas que comenzaban con un texto determinado y se consultaron clientes registrados después de cierta fecha.
+Estas operaciones reflejan escenarios reales como búsquedas avanzadas por precio, disponibilidad o preferencias del cliente.
+
+
+## Consultas de agregacion  ##
+
+# Promedio de precios por categoría# 
+
+Analisis: Calcula el precio promedio dentro de cada categoría (Ropa, Calzado).
+Esto sirve para identificar qué categorías manejan productos más costosos y ajustar estrategias de venta.
+
+# Total de stock por categoría #
+
+Muestra cuántas unidades disponibles tiene la tienda en cada categoría.
+ Es útil para el control del inventario y para identificar categorías con bajo stock
+
+# Promedio de valoración por categoría #
+
+Permite saber qué categorías tienen mayor aceptación por los clientes, según su valoración.
+ Es importante para planear futuras compras o promociones
+
+# Producto más caro por categoría #
+
+Identifica el producto de mayor valor dentro de cada categoría.
+ Sirve para conocer la gama alta del catálogo.
+
+# Cantidad de productos por marca #
+
+Indica cuántos productos ofrece cada marca.
+ Permite saber si hay marcas con más presencia o mayor variedad en la tienda.
+
+## Conclusion  ##
+
+El desarrollo de esta actividad permitió comprender la utilidad de MongoDB en contextos donde la flexibilidad y la velocidad de operación son fundamentales. A través de las consultas realizadas se obtuvo información clave para la gestión de inventarios, análisis de comportamiento de compra y estrategias comerciales.
+MongoDB demostró ser adecuado para este tipo de aplicaciones gracias a su modelo orientado a documentos y su potente sistema de agregaciones, que facilita la generación de indicadores clave del negocio.
+
+## Presentacion canva ## - evidencias 
+
+https://www.canva.com/design/DAG5W4hYeRo/-U8Qp9UOWAYwhqM7bdUPxw/edit
